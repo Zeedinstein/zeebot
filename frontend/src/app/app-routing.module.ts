@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { MessagingPageComponent } from './messaging-page/messaging-page.component'
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: MessagingPageComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

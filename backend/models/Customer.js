@@ -8,7 +8,6 @@ const Customer = new Schema({
   conversation: [
     {
       sender: String,
-      mid: String,
       text: String
     }
   ]

@@ -14,7 +14,7 @@ export const handleNewMessage = async messageObject => {
       }
       // if customer exist add to conversation
       customer.conversation.push(message)
-      await customer.save()
+      customer.save()
       sentMessageViaWebsocket(message)
     } catch (error) {
       // if customer does not exist create Customer
@@ -30,8 +30,8 @@ export const handleNewMessage = async messageObject => {
           profile_pic: user.profile_pic,
           conversation: [message]
         })
-        await customer.save()
-        await emitAllCustomers()
+        customer.save()
+        emitAllCustomers()
         sentMessageViaWebsocket(message)
       }
     }

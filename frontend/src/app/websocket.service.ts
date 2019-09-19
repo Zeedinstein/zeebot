@@ -9,5 +9,6 @@ export class WebsocketService {
 
   sendNewMessage(message: any) {
     this.socket.emit('NewMessage', message);
+    console.log(message)
   }
 }

@@ -3,8 +3,10 @@
 ### You will need a .env under /backend to run
 This is to keep any configuration seperate from the code
 ```
-DATABASE_PATH=mongodb://localhost:27017/zeebot
+DATABASE_PATH=mongodb://localhost/zeebot
 PORT=8000
+VERIFY_TOKEN=SECURETOKEN
+PAGE_ACCESS_TOKEN=YOURTOKEN
 FACEBOOK_API_URL=https://graph.facebook.com
 ```
 

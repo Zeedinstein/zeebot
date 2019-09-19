@@ -1,31 +1,37 @@
-.chat-window 
+#chatWindow 
     height: 100vh   
     display: block
     border: 1px #ccc solid
     border-radius: 5px
+    padding-bottom: 50px
+    overflow-y: scroll
 
     .msg
         width: 100%
         margin-top: 5px !important
         margin-bottom: 5px !important
         display: inline-block
+        margin-bottom: 50px !important
 
     .customer-msg
         float: left
         max-width: 75%
+        margin-bottom: 20px
         padding: 10px 20px
         border: 1px #ccc solid
         border-radius: 5px
 
     .agent-msg
         float: right !important
-        max-width: 75%
-        padding: 10px 20px
+        width: 75% !important
+        padding: 10px 10px
         border: 1px #ccc solid
         border-radius: 5px
         text-align: right
 
     .message-box
-        width: auto
-        position: fixed
+        width: 500px
+        position: -webkit-sticky
+        align-self: auto
         bottom: 0
+        left: 50%

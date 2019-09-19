@@ -8,24 +8,31 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8 chat-window">
-      <ng-container *ngIf="selectedCustomer">
-        <div *ngFor="let message of selectedCustomer.conversation">
-          <div *ngIf="message.sender == selectedCustomer.psid" class="msg customer-msg">
-            <img [src]="selectedCustomer.profile_pic" class="mr-3 rounded" />
-            <p>{{ message.text }}</p>
+    <div class="col-md-8" id="chatWindow" #chatWindow>
+      <div >
+        <ng-container *ngIf="selectedCustomer">
+          <div *ngFor="let message of selectedCustomer.conversation">
+            <div *ngIf="message.sender == selectedCustomer.psid" class="msg customer-msg">
+              <img [src]="selectedCustomer.profile_pic" class="rounded" style="width: 10%" />
+              <p>{{ message.text }}</p>
+            </div>
+            <div *ngIf="message.sender == 'AGENT'" class="msg agent-msg">
+              <p>{{ message.text }}</p>
+            </div>
           </div>
-          <div *ngIf="message.sender == 'AGENT'" class="msg agent-msg">
-            <p>{{ message.text }}</p>
-          </div>
-        </div>
+
+        </ng-container>
+      </div>
+
+      <div >
         <div class="input-group mb-3 message-box">
-          <input type="text" [formControl]="messageBox" class="form-control" placeholder="Type message..."/>
+          <input type="text" [formControl]="messageBox" class="form-control" placeholder="Type message..." />
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Send</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Send</button>
           </div>
         </div>
-      </ng-container>
+      </div>
+
     </div>
   </div>
 </div>

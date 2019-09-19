@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core'
-import { Socket } from 'ngx-socket-io'
+import { Injectable } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { Socket } from 'ngx-socket-io'
 export class WebsocketService {
   constructor(public socket: Socket) {}
 
-  sendMessage(message: any) {
-    this.socket.emit('NewMessage', message)
+  sendNewMessage(message: any) {
+    this.socket.emit('NewMessage', message);
   }
 }

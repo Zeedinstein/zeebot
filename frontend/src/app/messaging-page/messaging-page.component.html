@@ -1,25 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
+      <div *ngFor="let customer of Customers" class="card" (click)="selectCustomer(customer)">
         <div class="card-body">
-          <h5 class="card-title">Jason</h5>
-          <p class="card-text">Hello</p>
+          <h5 class="card-title">{{ customer.first_name }} {{ customer.last_name }}</h5>
+          <p class="card-text">{{ customer.conversation[0].text }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-6 chat-window">
-      <div class="msg customer-msg">
-        <img src="..." class="mr-3 rounded" alt="...">
-        <p>Hello</p>
-      </div>
-      <div class="msg agent-msg">Yes</div>
-      <div class="input-group mb-3 message-box">
-        <input type="text" class="form-control" placeholder="Type message...">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+      <ng-container *ngIf="selectedCustomer">
+        <div *ngFor="let message of selectedCustomer.conversation">
+          <div *ngIf="message.sender == selectedCustomer.psid" class="msg customer-msg">
+            <img [src]="selectedCustomer.profile_pic" class="mr-3 rounded" />
+            <p>{{ message.text }}</p>
+          </div>
+          <div *ngIf="message.sender == 'AGENT'" class="msg agent-msg">
+            <p>{{ message.text }}</p>
+          </div>
         </div>
-      </div>
+        <div class="input-group mb-3 message-box">
+          <input type="text" [formControl]="messageBox" class="form-control" placeholder="Type message..."/>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Send</button>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -5,29 +5,33 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import database from './lib/database'
+import socketio from 'socket.io'
 // Import routes
 import webhook_routes from './routes/webhooks'
 
 const app = express()
 
 app.use(bodyParser.json())
-app.use(cors())
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  if (req.method === 'OPTIONS') {
-    res.header(
-      'Access-Control-Allow-Methods',
-      'PUT, POST, PATCH, DELETE, OPTIONS'
-    )
-    res.header('Access-Control-Max-Age', 120)
-    return res.status(200).json({})
-  }
-  next()
-})
+app.use(
+  cors({
+    origin: '*'
+  })
+)
 // Initialize routes
 app.use('', webhook_routes)
 
-export const server = app.listen(process.env.PORT, () => {
+const server = require( "http" ).createServer(app)
+
+const io = socketio(server)
+
+io.on('connection', () => {
+    console.log('user connected to websocket')
+})
+
+export const sentMessageViaWebsocket = (message) => {
+    io.emit('NewMessage', message)
+}
+
+server.listen(process.env.PORT,"127.0.0.1", () => {
   console.log(`API running on port ${process.env.PORT}`)
 })

@@ -1,6 +1,6 @@
 import { getFacebookUser, sendMessageToCustomer } from './facebookAPI'
 import { CustomerDoesNotExist } from '../lib/errors'
-import { sentMessageViaWebsocket } from './websocket'
+import { sentMessageViaWebsocket } from '../server'
 import Customer from '../models/Customer'
 
 export const handleNewMessage = async messageObject => {
@@ -15,6 +15,7 @@ export const handleNewMessage = async messageObject => {
       // if customer exist add to conversation
       customer.conversation.push(message)
       await customer.save()
+      sendMessageToCustomer(message, customer.psid)
       sentMessageViaWebsocket(message)
     } catch (error) {
       // if customer does not exist create Customer

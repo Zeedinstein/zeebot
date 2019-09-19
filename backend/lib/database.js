@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-mongoose.connect(`mongodb://${process.env.DATABASE_PATH}`, {
+mongoose.connect(`${process.env.DATABASE_PATH}`, {
   useNewUrlParser: true
 })
 const database = mongoose.connection

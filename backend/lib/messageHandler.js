@@ -1,6 +1,6 @@
 import { getFacebookUser } from './facebookAPI'
 import { CustomerDoesNotExist } from '../lib/errors'
-import { sentMessageViaWebsocket, emitAllCustomers } from './websocket'
+import { sentMessageViaWebsocket, emitAllCustomers } from '../server'
 import Customer from '../models/Customer'
 
 export const handleNewMessage = async messageObject => {

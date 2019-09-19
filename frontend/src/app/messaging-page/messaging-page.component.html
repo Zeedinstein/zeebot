@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div *ngFor="let customer of Customers" class="card" (click)="selectCustomer(customer)">
         <div class="card-body">
           <h5 class="card-title">{{ customer.first_name }} {{ customer.last_name }}</h5>
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 chat-window">
+    <div class="col-md-8 chat-window">
       <ng-container *ngIf="selectedCustomer">
         <div *ngFor="let message of selectedCustomer.conversation">
           <div *ngIf="message.sender == selectedCustomer.psid" class="msg customer-msg">

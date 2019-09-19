@@ -39,6 +39,7 @@ export class MessagingPageComponent implements OnInit {
 
   sendMessage() {
     this.ws.sendNewMessage({
+      recipient: this.selectedCustomer.psid,
       sender: 'AGENT',
       text: this.messageBox.value
     })
